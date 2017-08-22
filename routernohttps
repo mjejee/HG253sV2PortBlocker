@@ -1,0 +1,18 @@
+#!/usr/bin/expect -f
+
+log_file /var/log/routernohttps.log;
+
+spawn ssh -o "ConnectionAttempts 15" -o "ConnectTimeout 10" admin@0.0.0.0 #change 0.0.0.0 for your router's local ip address
+expect "assword:"
+send "password\r" #Change password for your router's admin account password
+expect "ATP>"
+send "shell\r"
+expect "list of built-in commands."
+send "su\r"
+expect "list of built-in commands."
+send "iptables -D INPUT -p tcp --dport https -j DROP\r"
+send "iptables -I INPUT -p tcp --dport https -j DROP\r"
+expect "iptables -I INPUT -p tcp --dport https -j DROP"
+send "exit\r"
+expect "$ "
+close

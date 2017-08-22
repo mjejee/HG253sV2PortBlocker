@@ -1,0 +1,42 @@
+#!/bin/sh
+### BEGIN INIT INFO
+# Provides:          RouterFirewallEnforcement
+# Required-Start:    $all
+# Required-Stop:     $all
+# Default-Start:     2 3 4 5
+# Default-Stop:      0 1 6
+# Description:       Checks port 443 for the router and closes it in case it is open.
+### END INIT INFO
+
+start() {
+ /etc/network/securerouterhttps.py &
+}
+
+stop() {
+  kill `cat /tmp/srh_pid`
+}
+
+restart() {
+  stop
+  start
+}
+
+case "$1" in
+  start)
+    start
+    ;;
+  stop)
+    stop
+    ;;
+  restart)
+    start
+    ;;
+  force-reload)
+    restart
+    ;;
+  reload)
+	restart
+	;;
+  *)
+    echo "Usage: $0 {start|stop|restart|force-reload|status}"
+esac
