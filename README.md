@@ -1,5 +1,5 @@
 # HG253sV2PortBlocker
-Periodically checks if the HG253s V2 router has port 443 open and closes it, avoiding leaking the wireless password to the Internet. Based on the bug published by Vicen Dominguez: https://github.com/vicendominguez/http-enum-vodafone-hua253s
+Periodically checks if the HG253s V2 router has port 443 open and closes it, avoiding the leak of the wireless password to the Internet. Based on the bug published by Vicen Dominguez: https://github.com/vicendominguez/http-enum-vodafone-hua253s
 
 It includes 3 files:
 * securerouterhttps - LSB script for running the python code as a service
